@@ -5,7 +5,7 @@
     <title>QR Scanner Demo</title>
   </head>
   <body>
-    <h1>My heaps good Qr Scanner</h1>
+    <h1>my heaps good qr scanner</h1>
     <div id="video-container">
       <video id="qr-video"></video>
     </div>
@@ -55,18 +55,10 @@
       </button>
     </div> -->
     <br />
+    <span id="cam-qr-result" hidden></span>
+
     <b>Detected QR code: </b>
     <span id="file-qr-result">None</span>
-    <br />
-    <b>Last detected at: </b>
-    <span id="cam-qr-result-timestamp"></span>
-    <br />
-    <button id="start-button">Start</button>
-    <button id="stop-button">Stop</button>
-    <hr />
-
-    <!-- <h1>Scan from File:</h1>
-    <input type="file" id="file-selector" /> -->
 
     <!--<script src="../qr-scanner.umd.min.js"></script>-->
     <!--<script src="../qr-scanner.legacy.min.js"></script>-->
@@ -118,7 +110,7 @@
           },
           highlightScanRegion: true,
           highlightCodeOutline: true,
-          maxScansPerSecond: 2,
+          maxScansPerSecond: 25,
         }
       );
 
@@ -204,7 +196,7 @@
         QrScanner.scanImage(file, { returnDetailedScanResult: true })
           .then((result) => setResult(fileQrResult, result))
           .catch((e) =>
-            setResult(fileQrResult, { data: e || "No QR code found." })
+            setResult(fileQrResult, { data: e || "Hold Qr Code Steady....." })
           );
       });
     </script>
@@ -534,7 +526,7 @@
                   g.removeEventListener("message", u);
                   g.removeEventListener("error", r);
                   clearTimeout(w);
-                  v("Scanner error: " + (t ? t.message || t : "Unknown Error"));
+                  // v("Scanner error: " + (t ? t.message || t : "Unknown Error"));
                 };
                 g.addEventListener("message", u);
                 g.addEventListener("error", r);
@@ -567,7 +559,8 @@
                           alsoTryWithoutScanRegion: h,
                         })
                       );
-                    throw `Scanner error: ${g}`;
+                    // throw `Scanner error: ${g}`;
+                    throw `Scanner error: Where the QR at?`;
                   }
                 })(),
               ]);
@@ -870,7 +863,7 @@
         }
       }
       e.DEFAULT_CANVAS_SIZE = 400;
-      e.NO_QR_CODE_FOUND = "No QR code found";
+      e.NO_QR_CODE_FOUND = "";
       e._disableBarcodeDetector = !1;
       e._workerMessageId = 0;
       export default e;
